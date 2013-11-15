@@ -10,8 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// Inclusion of bootstrap.min should be done after inclusion of jquery
+//
 //= require jquery
+//= require bootstrap.min
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap.min
 //= require_tree .

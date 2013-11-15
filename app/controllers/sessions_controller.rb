@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     user = User.find_by(:username => params[:session][:username].downcase)
     if user && User.authenticate(params[:session][:username], params[:session][:password])
@@ -13,5 +10,10 @@ class SessionsController < ApplicationController
       flash[:signin_error] = "Error signing in: invalid username/password combination!"
       render 'pages/login'
     end
+  end
+
+  def destroy
+    sign_out
+    redirect_to root_url
   end
 end

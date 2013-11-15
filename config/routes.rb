@@ -12,6 +12,7 @@ Ser::Application.routes.draw do
   get "pages/signup"
   match "/login", to: "pages#login", via: [:get]
   match "/signup", to: "pages#signup", via: [:get]
+  match '/signout', :to => 'sessions#destroy', :via => 'delete'
 
   # resources
   resources :users
