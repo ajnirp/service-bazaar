@@ -8,9 +8,11 @@
 
 <h1>Log in</h1>
 
+<p><%= link_to "Home", "/" %></p>
+
 <form class="form-signin" action="/sessions" method="post">
 	<div style="float:left">
-		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30" required>
+		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30" required autofocus>
 		<input class="form-control" type="password" name="session[password]" placeholder="Password" required>
 	</div>
 	<%= token_tag nil %>

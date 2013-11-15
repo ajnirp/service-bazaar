@@ -13,12 +13,11 @@
  *= require bootstrap.min
  */
 
-
 section {
 	margin: 0 auto;
 	margin-top: 40px;
 	width: 720px;
-	background-color: #ddd;
+	/*background-color: #ddd;*/
 	padding: 01px 20px 20px 20px;
-	border-radius: 10px;
+	/*border-radius: 10px;*/
 }

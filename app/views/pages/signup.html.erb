@@ -15,11 +15,13 @@
 
 <h1>Sign up</h1>
 
+<p><%= link_to "Home", "/" %></p>
+
 <form class="form-signin" action="/users" method="post">
 	<table>
 		<tr>
 			<td>Username</td>
-			<td><input type="text" class="form-control" name="user[username]" placeholder="Username" ></td>
+			<td><input type="text" class="form-control" name="user[username]" placeholder="Username" autofocus></td>
 		</tr>
 		<tr>
 			<td>Real Name</td>
