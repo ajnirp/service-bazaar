@@ -13,4 +13,7 @@ Ser::Application.routes.draw do
   match "/login", to: "pages#login", via: [:get]
   match "/signup", to: "pages#signup", via: [:get]
 
+  # resources
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 end

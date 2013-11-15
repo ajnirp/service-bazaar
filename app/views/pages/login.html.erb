@@ -1,9 +1,17 @@
+<% if flash[:signin_error] %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+		    <%= flash[:signin_error] %>
+	    </div>
+    </div>
+<% end %>
+
 <h1>Log in</h1>
 
 <form class="form-signin" action="/sessions" method="post">
 	<div style="float:left">
-		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30">
-		<input class="form-control" type="password" name="session[password]" placeholder="Password">
+		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30" required>
+		<input class="form-control" type="password" name="session[password]" placeholder="Password" required>
 	</div>
 	<%= token_tag nil %>
 	<button type="submit" class="btn btn-primary" style="margin:10px">Log in</button>
