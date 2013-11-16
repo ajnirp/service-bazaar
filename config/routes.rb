@@ -14,6 +14,10 @@ Ser::Application.routes.draw do
   match "/signup", to: "pages#signup", via: [:get]
   match '/signout', :to => 'sessions#destroy', :via => 'delete'
 
+  #messages
+  match '/messages', :to => "users#messages", via: [:get]
+  match "/new_message", to: "users#new_message", via: [:post,:get]
+  match "/transit", to: "users#transit", via: [:post,:get]
   # resources
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

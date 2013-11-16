@@ -20,7 +20,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -47,6 +47,11 @@ end
 group :development do
   gem 'better_errors'
 end
+
+#Mailbox
+gem 'mailboxer'
+
+gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
 
 # gem 'less-rails-bootstrap'
 # gem 'bootstrap-sass'
