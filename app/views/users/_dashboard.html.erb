@@ -1,16 +1,25 @@
 <style>
 	#dashboard {
-		background-color: #ddd;
-		border-radius: 10px;
 		float: left;
+		margin-left: 20px;
+		/*padding-top: 10px;*/
 	}
 
 	.tab-content {
-		margin-left: 20px;
-		padding-top: 10px;
+	}
+
+	#roles {
+		border-radius: 10px;
+		background-color: #ddd;
 		width: 800px;
-		height: 500px;
+		height: 400px;
 		overflow: auto;
+		padding-top: 10px;
+	}
+
+	#create-service {
+		padding-top: 30px;
+		background-color: #fff;
 	}
 </style>
 
@@ -23,43 +32,26 @@
 	</ul>
 </div>
 
-<div id="dashboard" class="tab-content">
-	<div class="tab-pane active" id="buyer">
-		<div class="container">
-			<p>You have signed up for </p>
+<div id="dashboard">
+	<div id="roles" class="tab-content">
+		<div class="tab-pane active" id="buyer">
+			<div class="container">
+				<p>You have signed up for </p>
+			</div>
+		</div>
+
+		<div class="tab-pane" id="vendor">
+			<div class="container">
+				<p>You are offering</p>
+			</div>
 		</div>
 	</div>
 
-	<div class="tab-pane" id="vendor">
-		<div class="container">
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-			<p>You are offering</p>
-		</div>
+	<!-- Create service button -->
+	<div id="create-service">
+		<form action="/services" method="post">
+			<input type="hidden" name="userid" value="<%= current_user.id %>">
+			<button type="submit" class="btn btn-danger">Create a service</button>
+		</form>
 	</div>
 </div>

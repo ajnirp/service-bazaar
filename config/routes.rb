@@ -17,4 +17,9 @@ Ser::Application.routes.draw do
   # resources
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :services
+
+  # search and messages
+  match "/search", to: "pages#search", via: [:get]
+  match "/messages", to: "users#messages", via: [:get]
 end

@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     @user = User.find(request.original_url.split('/').last)
   end
 
+  def messages
+  end
+
   private
 
   def user_params
