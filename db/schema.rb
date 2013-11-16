@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20131115182333) do
     t.string   "emailID",        null: false
     t.string   "remember_token"
     t.string   "password",       null: false
+    t.float    "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
