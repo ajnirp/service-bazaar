@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :emailID, :null => false
       t.string :remember_token
       t.string :password, :null => false
+      t.float :rating
       t.timestamps
     end
     add_index :users, :remember_token
