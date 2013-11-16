@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20131116112718) do
 
   add_index "receipts", ["notification_id"], name: "index_receipts_on_notification_id", using: :btree
 
+  create_table "services", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "username",       null: false
     t.float    "latitude",       null: false
