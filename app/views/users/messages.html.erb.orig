@@ -1,0 +1,226 @@
+<<<<<<< HEAD
+<br>
+<table border="0" style="table-layout:fixed" >
+<col width="100%" />
+<td>
+  <ul class="nav nav-tabs " data-tabs="tabs" width="100%">
+    <li class="active"><a data-toggle="tab" href="#inbox">
+      <span class="badge"><%=@userinbox.count%> </span>   Inbox</a></li>
+    <li><a data-toggle="tab" href="#outbox"><span class="badge"><%=@useroutbox.count %> </span> Outbox</a></li>
+  </ul>
+  <div class="tab-content" >
+    <div class="tab-pane active" id="inbox">
+           <script type="text/javascript" charset="utf-8">
+      /* Formating function for row details */
+      function fnFormatDetails ( oTable, nTr )
+      {
+        var aData = oTable.fnGetData( nTr );
+        var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="table-layout:fixed" >';
+        sOut += '<tr><td style="word-wrap:break-word">Body:</td><td>'+aData.body+'</td></tr>';
+        
+        sOut += '</table>';
+        
+        return sOut;
+      }
+      function fnFormatDetails1 ( oTable, nTr )
+      {
+        var aData = oTable.fnGetData( nTr );
+        var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="table-layout:fixed" >';
+        sOut += '<tr><td style="word-wrap:break-word">Body:</td><td>'+aData.body+'</td></tr>';
+        
+        
+        sOut += '</table>';
+        
+        return sOut;
+      }
+      
+      $(document).ready(function() {
+        /*
+         * Insert a 'details' column to the table
+         */
+        var nCloneTh = document.createElement( 'th' );
+        var nCloneTd = document.createElement( 'td' );
+        nCloneTd.innerHTML = '<img src="/details_open.png">';
+        nCloneTd.className = "center";
+        
+        $('#ex1 thead tr').each( function () {
+          this.insertBefore( nCloneTh, this.childNodes[0] );
+        } );
+        
+        $('#ex1 tbody tr').each( function () {
+          this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+        } );
+        var aDataSet1 = <%=raw @userinboxjson %>;
+        /*
+         * Initialse DataTables, with no sorting on the 'details' column
+         */
+        var oTable1 = $('#ex1').dataTable( {
+          
+          sPaginationType: "full_numbers",
+            bJQueryUI: true,
+            "aaData": aDataSet1,
+
+          "aoColumns": [
+            {
+              "mDataProp":null,
+              "sClass":"control center",
+              "sDefaultContent": '<img src="/details_open.png">'
+            },
+            {"mDataProp": "sender_id", "sTitle":"From"},
+            {"mDataProp": "date", "sTitle":"Date"},
+            {"mDataProp": "subject", "sTitle":"Subject"},
+            
+          ],
+          "aoColumnDefs": [ {
+      "aTargets": [1,2,3],
+      "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+        
+          $(nTd).css('color', 'blue')
+        
+      }
+    } ]
+        });
+        
+        /* Add event listener for opening and closing details
+         * Note that the indicator for showing which row is open is not controlled by DataTables,
+         * rather it is done here
+         */
+        $('#ex1 tbody td img').live('click', function () {
+          var nTr = $(this).parents('tr')[0];
+          if ( oTable1.fnIsOpen(nTr) )
+          {
+            /* This row is already open - close it */
+            this.src = "/details_open.png";
+            oTable1.fnClose( nTr );
+          }
+          else
+          {
+            /* Open this row */
+            this.src = "/details_close.png";
+            oTable1.fnOpen( nTr, fnFormatDetails(oTable1, nTr), 'details' );
+          }
+        } );
+      } );
+    </script>  
+
+    <table class="display" id="ex1" cellpadding="0" cellspacing="0" border="0">
+  <thead>
+    <tr>
+      <th> Username </th>
+      <th> Password </th>
+      <th> Real Name </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+  
+  </tbody>
+
+</table>
+    </div>
+    <div class="tab-pane" id="outbox">
+        <script type="text/javascript" charset="utf-8">
+      /* Formating function for row details */
+      
+      
+      $(document).ready(function() {
+        /*
+         * Insert a 'details' column to the table
+         */
+        var nCloneTh = document.createElement( 'th' );
+        var nCloneTd = document.createElement( 'td' );
+        nCloneTd.innerHTML = '<img src="/details_open.png">';
+        nCloneTd.className = "center";
+        
+        $('#ex2 thead tr').each( function () {
+          this.insertBefore( nCloneTh, this.childNodes[0] );
+        } );
+        
+        $('#ex2 tbody tr').each( function () {
+          this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+        } );
+        var aDataSet2 = <%=raw @useroutboxjson %>;
+        /*
+         * Initialse DataTables, with no sorting on the 'details' column
+         */
+        var oTable = $('#ex2').dataTable( {
+          
+          sPaginationType: "full_numbers",
+            bJQueryUI: true,
+            "aaData": aDataSet2,
+          "aoColumns": [
+            {
+              "mDataProp":null,
+              "sClass":"control center",
+              "sDefaultContent": '<img src="/details_open.png">'
+            },
+            {"mDataProp": "recipient", "sTitle":"To"},
+            {"mDataProp": "date", "sTitle":"Date"},
+            {"mDataProp": "subject", "sTitle":"Subject"},
+            
+          ],
+          "aoColumnDefs": [ {
+      "aTargets": [1,2,3],
+      "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+        
+          $(nTd).css('color', 'blue')
+        
+      }
+    } ]
+        });
+        
+        /* Add event listener for opening and closing details
+         * Note that the indicator for showing which row is open is not controlled by DataTables,
+         * rather it is done here
+         */
+        $('#ex2 tbody td img').live('click', function () {
+          var nTr = $(this).parents('tr')[0];
+          if ( oTable.fnIsOpen(nTr) )
+          {
+            /* This row is already open - close it */
+            this.src = "/details_open.png";
+            oTable.fnClose( nTr );
+          }
+          else
+          {
+            /* Open this row */
+            this.src = "/details_close.png";
+            oTable.fnOpen( nTr, fnFormatDetails1(oTable, nTr), 'details' );
+          }
+        } );
+      } );
+    </script>
+  
+<table class="display" id="ex2" cellpadding="0" cellspacing="0" border="0">
+  <thead>
+    <tr>
+      <th> Username </th>
+      <th> Password </th>
+      <th> Real Name </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+  
+  </tbody>
+
+</table>
+    </div>
+</div>
+</td>
+<td> 
+  </td><td></td><td>
+  <form action="/new_message" method="post">
+    <input type="hidden" name="user[recipient]" >
+    <button type="submit" class="btn btn-lg btn-primary">New Message</button>
+    <%= token_tag nil %>
+    </form>
+</td>
+
+</table>
+
+=======
+<h1>Messages</h1>
+>>>>>>> e946f5a4903cdbfd5dfae75918f2e35ad2db1ff8
