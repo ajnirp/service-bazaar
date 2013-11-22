@@ -50,7 +50,7 @@ end
 
 #Mailbox
 gem 'mailboxer'
-
+#
 gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
 
 # gem 'less-rails-bootstrap'

@@ -53,6 +53,42 @@ class UsersController < ApplicationController
     @useroutboxjson = @useroutboxx.to_json
   end
 
+  def edit
+    userid=request.original_url.split("/")[-2]
+    if userid != current_user.id.to_s
+      redirect_to "/"
+    end
+  end
+
+  def update
+    oldpass=edit_user_params[:oldpassword]
+    
+    
+    @passmatch=false
+    if oldpass == current_user.password
+      @passmatch=true
+      if current_user.update_attributes(edit_user_params_new)
+        flash[:success] = "Profile updated"
+        redirect_to "/users/#{current_user.id}/edit"
+      else
+        puts current_user.errors.full_messages
+        render 'edit'
+      end
+    elsif oldpass==""
+        if current_user.update_attributes(edit_user_params_new_nopass)
+        flash[:success] = "Profile updated"
+        redirect_to "/users/#{current_user.id}/edit"
+        else
+        render 'edit'
+        #redirect_to "/users/#{current_user.username}/edit"
+        end
+    else
+    flash[:danger]="Old password incorrect!"
+      redirect_to "/users/#{current_user.id}/edit"
+    end
+    
+  end  
+
   private
 
   def user_params
@@ -61,6 +97,16 @@ class UsersController < ApplicationController
 
   def new_msg_params
     params.require(:msg).permit(:body,:subject,:recipient)
+  end
+
+  def edit_user_params
+    params.require(:user).permit(:username, :emailID, :oldpassword, :latitude, :longitude, :dateOfBirth, :realName)
+  end
+  def edit_user_params_new
+    params.require(:user).permit(:username, :emailID, :password, :latitude, :longitude, :dateOfBirth, :realName)
+  end
+  def edit_user_params_new_nopass
+    params.require(:user).permit(:username, :emailID, :latitude, :longitude, :dateOfBirth, :realName)
   end
 
 end
