@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
   acts_as_messageable
-
+=======
   has_many :services, dependent: :destroy
   has_many :appointments, dependent: :destroy
+>>>>>>> e946f5a4903cdbfd5dfae75918f2e35ad2db1ff8
 
   before_create :create_remember_token
 

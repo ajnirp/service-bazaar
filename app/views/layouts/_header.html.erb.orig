@@ -13,8 +13,13 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
+<<<<<<< HEAD
       <li><a href="/">Home</span></a></li>
       <li><%= link_to "Profile", "/users/#{current_user.id}" %>>Profile</a></li>
+=======
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Profile", "/users/#{current_user.id}" %></li>
+>>>>>>> e946f5a4903cdbfd5dfae75918f2e35ad2db1ff8
       <li><a href="/messages">Messages</a>
       <li><a href="/search">Search</a>
       </li>

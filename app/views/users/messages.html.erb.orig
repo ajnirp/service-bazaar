@@ -1,4 +1,5 @@
-<h1>Messages</h1><br>
+<<<<<<< HEAD
+<br>
 <table border="0" style="table-layout:fixed" >
 <col width="100%" />
 <td>
@@ -220,3 +221,6 @@
 
 </table>
 
+=======
+<h1>Messages</h1>
+>>>>>>> e946f5a4903cdbfd5dfae75918f2e35ad2db1ff8

@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/rweng/jquery-datatables-rails.git
+  revision: 7d77f59c75edb5270b2a3b27a8d8ebeb2ce82d85
+  specs:
+    jquery-datatables-rails (1.11.3)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,6 +38,10 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.1.4)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -41,6 +52,8 @@ GEM
     coffee-script-source (1.6.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    foreigner (1.6.0)
+      activerecord (>= 3.0.0)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.2)
@@ -49,11 +62,17 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
     json (1.8.1)
     libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailboxer (0.11.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (> 3.0.0)
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
@@ -120,7 +139,10 @@ DEPENDENCIES
   better_errors
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
+  jquery-datatables-rails!
   jquery-rails
+  jquery-ui-rails
+  mailboxer
   mysql2
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)

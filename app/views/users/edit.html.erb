@@ -1,0 +1,109 @@
+<br>
+<div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+</div>
+
+<% if current_user.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(current_user.errors.count, "error") %>.
+    
+    	<ul>
+    	<% current_user.errors.full_messages.each do |msg| %>
+      		<li>* <%= msg %></li>
+    	<% end %>
+    	</ul>
+  	</div>
+  </div>
+<% end %>
+
+<h1>Edit your Profile</h1>
+<div class="row">
+<div class="col-md-6">
+<table border="0"padding="0">
+<td>
+	<div class="container">
+        <form class="form-signin" method="POST" action=<%= "/users/#{current_user.username}"   %> style="width:130%">
+        <input name="_method" type="hidden" value="patch" />
+            <br><br>
+            <input type="text" class="form-control disabled" name="user[username]" value=<%= "#{current_user.username}"   %> disabled style="width:130%"><br>
+            <input type="text" class="form-control" name="user[realName]" placeholder="Real Name" size="20" value="<%= "#{current_user.realName}"   %>" style="width:130%"><br>
+             <input type="date" class="form-control" name="user[dateOfBirth]" value=<%= "#{current_user.dateOfBirth}" %> style="width:130%">
+        <br>
+        <input type="text" class="form-control" name="user[emailID]" placeholder="e-mail ID" value=<%= "#{current_user.emailID}"   %> style="width:130%"><br>
+        
+        <input type="password" class="form-control" name="user[oldpassword]" placeholder="Password" style="width:130%"><br>
+        <input type="password" class="form-control" name="user[password]" placeholder="Password" style="width:130%"><br>
+
+        <input type="text" class="form-control" name="user[latitude]" placeholder="Latitude" id="lat" value=<%= "#{current_user.latitude}"   %> style="width:130%"><br>
+        <input type="text" class="form-control" name="user[longitude]" placeholder="Longitude" id="long" value=<%= "#{current_user.longitude}"   %> style="width:130%"><br>
+         
+           <%= token_tag nil %>
+        <p></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:130%">Update</button>
+		  </form>
+	</div>
+    </div>
+    </td>
+    </table>
+</div>
+<div class="col-md-6"><style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe74sNpBGaexJE3_trSv2NcA21Brj_d10&sensor=true"></script>
+    <script>
+// The following example creates a marker in Stockholm, Sweden
+// using a DROP animation. Clicking on the marker will toggle
+// the animation between a BOUNCE animation and no animation.
+
+var stockholm = new google.maps.LatLng(59.32522, 18.07002);
+var parliament = new google.maps.LatLng(19.1336, 72.9154);
+var marker;
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 13,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    center: parliament
+  };
+
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+  marker = new google.maps.Marker({
+    map:map,
+    draggable:true,
+    animation: google.maps.Animation.DROP,
+    position: parliament
+  });
+  google.maps.event.addListener(marker, "drag", function(){
+        document.getElementById("lat").value=marker.position.toUrlValue().split(',')[0];
+        document.getElementById("long").value=marker.position.toUrlValue().split(',')[1];
+    });
+}
+
+function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    <br><br>
+    <div id="map-canvas" style="width: 500px; height: 400px; position: relative;"></div>
+    </div>
+    </div>

@@ -1,0 +1,37 @@
+<br>
+<div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= raw value %></div>
+      <% end %>
+      </div>
+ <% if !@errs.nil? %>     
+ <% if @errs.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@errs.count, "error") %>.
+    
+    <ul>
+    <% @errs.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  </div>
+<% end %>
+<%end%>
+
+
+<h1 padding="20px">Send Message</h1>
+
+<div class="row">
+        <form class="form-signin" method="POST" action="/transit">
+          <br><br>
+
+          <p><input class="form-control" id="session_username" type="text" name="msg[recipient]" placeholder="Recipient" size="30" style="width:50%;margin-left: 18px;" value=<%= @rec%>></p><br>
+          <input class="form-control" id="session_password" type="text" name="msg[subject]" placeholder="Subject" style="width:50%;margin-left: 18px;"><br>
+          <textarea padding="20px" style="width:50%;margin-left: 18px;" rows="10"  name="msg[body]" placeholder="Body" class="form-control" ></textarea>
+          <br>
+          <%= token_tag nil %>
+          <button class="btn btn-lg btn-primary btn-block" style="width:50%;margin-left: 18px;" type="submit">Send Message</button>
+        </form>
+    </div>

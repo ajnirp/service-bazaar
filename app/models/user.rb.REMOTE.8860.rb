@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_messageable
-
   has_many :services, dependent: :destroy
   has_many :appointments, dependent: :destroy
 
