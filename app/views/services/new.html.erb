@@ -8,9 +8,9 @@
 
 	<label for="service-category">Category</label>
 	<select name="category" id="service-category">
-		<%# all_category_names.each do |cat_name| %>
-			<!--option><%#= cat_name %></option-->
-		<%# end %>
+		<% Category.all.each do |cat_name| %>
+			<option value=<%= raw "\"#{cat_name.title}\""%> ><%= cat_name.title %></option>
+		<% end %>
 	</select><br><br>
 
 	<!-- <label for="service-describe">Description</label> -->

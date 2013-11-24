@@ -24,18 +24,6 @@ ActiveRecord::Schema.define(version: 20131122204551) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "exchanges", id: false, force: true do |t|
-    t.string  "senderName",   limit: 30, default: "", null: false
-    t.string  "receiverName", limit: 30, default: "", null: false
-    t.integer "messageID",               default: 0,  null: false
-  end
-
-  create_table "feedbackfors", id: false, force: true do |t|
-    t.integer "feedbackID",            default: 0,  null: false
-    t.string  "buyerName",  limit: 30, default: "", null: false
-    t.integer "serviceID"
-  end
-
   create_table "feedbacks", force: true do |t|
     t.float "rating"
     t.text  "review"
@@ -84,11 +72,6 @@ ActiveRecord::Schema.define(version: 20131122204551) do
   end
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
-
-  create_table "offers", id: false, force: true do |t|
-    t.string  "vendorName", limit: 30, default: "", null: false
-    t.integer "serviceID",             default: 0,  null: false
-  end
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"
