@@ -23,6 +23,10 @@
 	}
 </style>
 
+<% if flash[:service_created] %>
+    <div class="success"><%= flash[:service_created] %></div>
+<% end %>
+
 <h1>Dashboard</h1>
 
 <div style="float:left">
@@ -42,16 +46,18 @@
 
 		<div class="tab-pane" id="vendor">
 			<div class="container">
-				<p>You are offering</p>
+				<p>You are offering <%= pluralize(current_user.services.count, "service") %>.</p>
+				<p>View your offered services <%= link_to "here", "/users/#{current_user.id}/offered" %></p>
 			</div>
 		</div>
 	</div>
 
 	<!-- Create service button -->
 	<div id="create-service">
-		<form action="/services" method="post">
+		<form action="/services/new" method="post">
 			<input type="hidden" name="userid" value="<%= current_user.id %>">
 			<button type="submit" class="btn btn-danger">Create a service</button>
+			<%= token_tag nil %>
 		</form>
 	</div>
 </div>

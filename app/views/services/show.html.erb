@@ -1,0 +1,32 @@
+<h1><%= @service.title %></h1>
+
+<% owner = @service.user %>
+
+<h2>Vendor</h2>
+<p>This service is offered by <%= link_to "#{owner.username}", owner %></p>
+
+<h2>Description</h2>
+<p><%= @service.description %></p>
+
+<!-- Display current listings -->
+
+<h2>Current Listings</h2>
+
+<% if @service.listings.count.zero? %>
+	<p>This service doesn't have any listings yet</p>
+<% else %>
+	<p>This service has the following listings:</p>
+	<ul>
+		<% @service.listings.each do |l| %>
+			<li><%= link_to l.description, l %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if current_user.username == owner.username %>
+	<form action="/listings/new" method="post">
+		<input type="hidden" name="serviceid" value="<%= @service.id %>">
+		<%= token_tag nil %>
+		<button type="submit" class="btn btn-primary">Create a listing</button>
+	</form>
+<% end %>
