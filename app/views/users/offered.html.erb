@@ -1,0 +1,16 @@
+<% user_id = request.original_url.split('/')[-2] %>
+<% @user = User.find(user_id) %>
+<%# @user = User.find(user_id) 
+	@userServices = @user.services.reject{|s| s.listings.first.nil?}
+	@servStart=@userServices.map{|x| x.listings.map{|y| y[:startDate]}.min} 
+	@servEnd=@userServices.map{|x| x.listings.map{|y| y[:endDate]}.max}
+	@servMap=@userServices.map{|x| {"id"=>x[:id],"title" => x[:title],"desc"=>x[:description], "startDate" => x.listings.map{|y| y[:startDate]}.min, "endDate"=> x.listings.map{|y| y[:endDate]}.max, "minPrice"=> x.listings.map{|y| y[:minPrice]}.min, "maxPrice"=>x.listings.map{|y| y[:maxPrice]}.max }  }
+%>
+
+<h1>Services offered by <%= @user.username %></h1>
+
+<ul>
+<% @user.services.each do |s| %>
+  <li><%= link_to s.title, s %></li>
+<% end %>
+</ul>

@@ -1,0 +1,32 @@
+use ser;
+
+################remaining!!!!!!!
+
+create table liesins(
+	categoryID integer references categories(id),
+	serviceID integer references services(id),
+	primary key(serviceID, categoryID)
+);
+
+
+create table feedbackfors(
+	feedbackID integer references feedbacks(id),
+	buyerName varchar(30) references users(username),
+	serviceID integer references services(id),
+	primary key(buyerName,feedbackID)
+);
+
+
+create table exchanges(
+	senderName varchar(30) references users(username),
+	receiverName varchar(30) references users(username),
+	messageID integer references messages(id),
+	primary key(senderName, receiverName,messageID)
+);
+
+
+create table offers(
+	vendorName varchar(30) references vendors(username),
+	serviceID integer references services(id),
+	primary key(serviceID, vendorName)
+);

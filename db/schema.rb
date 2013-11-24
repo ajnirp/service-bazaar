@@ -11,13 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116112718) do
+ActiveRecord::Schema.define(version: 20131122204551) do
+
+  create_table "categories", force: true do |t|
+    t.string "title"
+    t.text   "description"
+  end
 
   create_table "conversations", force: true do |t|
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "exchanges", id: false, force: true do |t|
+    t.string  "senderName",   limit: 30, default: "", null: false
+    t.string  "receiverName", limit: 30, default: "", null: false
+    t.integer "messageID",               default: 0,  null: false
+  end
+
+  create_table "feedbackfors", id: false, force: true do |t|
+    t.integer "feedbackID",            default: 0,  null: false
+    t.string  "buyerName",  limit: 30, default: "", null: false
+    t.integer "serviceID"
+  end
+
+  create_table "feedbacks", force: true do |t|
+    t.float "rating"
+    t.text  "review"
+  end
+
+  create_table "liesins", force: true do |t|
+    t.integer "category_id"
+    t.integer "service_id"
+  end
+
+  add_index "liesins", ["category_id"], name: "index_liesins_on_category_id", using: :btree
+  add_index "liesins", ["service_id"], name: "index_liesins_on_service_id", using: :btree
+
+  create_table "listings", force: true do |t|
+    t.datetime "startingTime"
+    t.datetime "endingTime"
+    t.float    "minPrice"
+    t.float    "maxPrice"
+    t.date     "startDate"
+    t.date     "endDate"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "description"
+    t.string   "availability"
+    t.integer  "service_id"
+  end
+
+  add_index "listings", ["service_id"], name: "index_listings_on_service_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.string   "type"
@@ -38,6 +84,11 @@ ActiveRecord::Schema.define(version: 20131116112718) do
   end
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
+
+  create_table "offers", id: false, force: true do |t|
+    t.string  "vendorName", limit: 30, default: "", null: false
+    t.integer "serviceID",             default: 0,  null: false
+  end
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"

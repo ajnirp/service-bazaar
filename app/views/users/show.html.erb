@@ -7,5 +7,9 @@
 	<tr><td>Rating</td><td><%= @user.rating %></td></tr>
 </table>
 
+<p>View services offered by <%= @user.username %> <%= link_to "here", "/users/#{@user.id}/offered" %></p>
+
 <!-- Send message button -->
-<button class="btn btn-success">Send a message</button>
+<% if current_user.id != @user.id %>
+	<button class="btn btn-success">Send a message</button>
+<% end %>
