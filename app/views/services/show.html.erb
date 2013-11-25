@@ -1,3 +1,11 @@
+<% if flash[:error] %>
+	<div id="error_explanation">
+      	<div class="alert alert-danger alert-dismissable">
+     	    <%= flash[:error] %>
+      	</div>
+    </div>
+<% end %>
+
 <h1><%= @service.title %></h1>
 
 <% owner = @service.user %>
@@ -18,7 +26,15 @@
 	<p>This service has the following listings:</p>
 	<ul>
 		<% @service.listings.each do |l| %>
-			<li><%= link_to l.description, l %></li>
+			<li>
+				<%= link_to l.description, l %>
+				<form method="delete" action=<%= "/listings/#{l.id}" %>>
+					<input type="hidden" name="serviceid" value="<%= @service.id %>">
+					<input type="hidden" name="listingid" value="<%= l.id %>">
+					<%= token_tag nil %>
+					<button type="submit" class="btn btn-xs btn-danger">Delete</button>
+				</form>
+			</li>
 		<% end %>
 	</ul>
 <% end %>

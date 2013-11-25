@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131122204551) do
+ActiveRecord::Schema.define(version: 20131125044239) do
+
+  create_table "appointments", force: true do |t|
+    t.float    "price"
+    t.boolean  "isConfirmed"
+    t.date     "date"
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["listing_id"], name: "index_appointments_on_listing_id", using: :btree
+  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string "title"
@@ -22,6 +35,12 @@ ActiveRecord::Schema.define(version: 20131122204551) do
     t.string   "subject",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "feedbackfors", id: false, force: true do |t|
+    t.integer "feedbackID",            default: 0,  null: false
+    t.string  "buyerName",  limit: 30, default: "", null: false
+    t.integer "serviceID"
   end
 
   create_table "feedbacks", force: true do |t|
@@ -49,6 +68,7 @@ ActiveRecord::Schema.define(version: 20131122204551) do
     t.text     "description"
     t.string   "availability"
     t.integer  "service_id"
+    t.float    "distance"
   end
 
   add_index "listings", ["service_id"], name: "index_listings_on_service_id", using: :btree
@@ -72,6 +92,11 @@ ActiveRecord::Schema.define(version: 20131122204551) do
   end
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
+
+  create_table "offers", id: false, force: true do |t|
+    t.string  "vendorName", limit: 30, default: "", null: false
+    t.integer "serviceID",             default: 0,  null: false
+  end
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"

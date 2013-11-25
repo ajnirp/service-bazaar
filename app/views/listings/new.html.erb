@@ -66,18 +66,19 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     <div id="map-canvas" style="width: 500px; height: 400px; position: relative;"></div><br><br>
 
+<div class="col-md-8">
 <form action="/listings" method="post"> <!-- listings#create -->
 	<!-- Start time, end time -->
-	<input type="datetime" class="form-control" name="listing[startingTime]" placeholder="Starting time"><br>
-	<input type="datetime" class="form-control" name="listing[endingTime]" placeholder="Ending time"><br>
+	<input type="time" class="form-control" name="listing[startingTime]" placeholder="Starting time"><br>
+	<input type="time" class="form-control" name="listing[endingTime]" placeholder="Ending time"><br>
 
 	<!-- Start date, end date -->
 	<input type="date" class="form-control" name="listing[startDate]" placeholder="Title"><br>
 	<input type="date" class="form-control" name="listing[endDate]" placeholder="Title"><br>
 
 	<!-- Latitude, longitude -->
-	<input type="number" min="-90" max="90" step="any" class="form-control" name="listing[latitude]" id="lat"placeholder="Latitude"><br>
-	<input type="number" min="-180" max="180" step="any" class="form-control" name="listing[longitude]" id="long"placeholder="Longitude"><br>
+	<input type="number" min="-90" max="90" step="any" class="form-control" name="listing[latitude]" id="lat" placeholder="Latitude"><br>
+	<input type="number" min="-180" max="180" step="any" class="form-control" name="listing[longitude]" id="long" placeholder="Longitude"><br>
 
 	<!-- Min price, max price -->
 	<input type="number" min="0" step="any" class="form-control" name="listing[minPrice]" placeholder="Minimum price"><br>
@@ -112,3 +113,4 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 	<button type="submit" class="btn btn-lg btn-success">Create!</button><br>
 </form>
+</div>
