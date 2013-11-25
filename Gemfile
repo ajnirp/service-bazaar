@@ -53,5 +53,8 @@ gem 'mailboxer'
 #
 gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-rails.git'
 
+#Star rating system
+gem 'jquery-star-rating-rails'
+
 # gem 'less-rails-bootstrap'
 # gem 'bootstrap-sass'
