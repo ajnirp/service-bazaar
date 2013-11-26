@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125044239) do
+ActiveRecord::Schema.define(version: 20131126135347) do
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -57,18 +57,18 @@ ActiveRecord::Schema.define(version: 20131125044239) do
   add_index "liesins", ["service_id"], name: "index_liesins_on_service_id", using: :btree
 
   create_table "listings", force: true do |t|
-    t.datetime "startingTime"
-    t.datetime "endingTime"
-    t.float    "minPrice"
-    t.float    "maxPrice"
-    t.date     "startDate"
-    t.date     "endDate"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.text     "description"
-    t.string   "availability"
-    t.integer  "service_id"
-    t.float    "distance"
+    t.time    "startingTime"
+    t.time    "endingTime"
+    t.float   "minPrice"
+    t.float   "maxPrice"
+    t.date    "startDate"
+    t.date    "endDate"
+    t.float   "latitude"
+    t.float   "longitude"
+    t.text    "description"
+    t.string  "availability"
+    t.integer "service_id"
+    t.float   "distance"
   end
 
   add_index "listings", ["service_id"], name: "index_listings_on_service_id", using: :btree
