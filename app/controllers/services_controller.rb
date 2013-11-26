@@ -4,9 +4,9 @@ class ServicesController < ApplicationController
 
   def create
     @service = current_user.services.build(create_service_params)
-    # @category = Category.find_by_name(params[:category])
+    @category = Category.find @service.category_id
     if @service.save
-      # @category.services.push @service
+      @category.services.push @service
       flash[:service_created] = "Service successfully created"
       redirect_to '/'
     end
@@ -20,6 +20,6 @@ class ServicesController < ApplicationController
   private
 
   def create_service_params
-    params.require(:service).permit(:title, :description, :visibility, :category)
+    params.require(:service).permit(:title, :description, :visibility, :category_id)
   end
 end

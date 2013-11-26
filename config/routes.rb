@@ -10,11 +10,14 @@ Ser::Application.routes.draw do
   # log in, sign up
   get "pages/login"
   get "pages/signup"
-  match "/services/new", to: "services#new", via: [:post, :get]
-  match "/listings/new", to: "listings#new", via: [:post]
   match "/login", to: "pages#login", via: [:get]
   match "/signup", to: "pages#signup", via: [:get]
   match '/signout', :to => 'sessions#destroy', :via => 'delete'
+
+  # forms for creation
+  match "/services/new", to: "services#new", via: [:post, :get]
+  match "/listings/new", to: "listings#new", via: [:post]
+  match "/appointments/new", to: "appointments#new", via: [:post]
 
   #messages
   match '/messages', :to => "users#messages", via: [:get]
@@ -26,11 +29,14 @@ Ser::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :services
   resources :listings
+  resources :categories
+  resources :appointments
 
   # search and messages
   match "/search", to: "pages#search", via: [:get]
   match "/messages", to: "users#messages", via: [:get]
 
-  # offered services
+  # miscellaneous matches
   match "/users/:id/offered", to: "users#offered", via: [:get]
+  match "/confirm-appointment", to:"appointments#confirm", via: [:post]
 end

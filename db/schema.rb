@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126135347) do
+ActiveRecord::Schema.define(version: 20131126175321) do
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -47,14 +47,6 @@ ActiveRecord::Schema.define(version: 20131126135347) do
     t.float "rating"
     t.text  "review"
   end
-
-  create_table "liesins", force: true do |t|
-    t.integer "category_id"
-    t.integer "service_id"
-  end
-
-  add_index "liesins", ["category_id"], name: "index_liesins_on_category_id", using: :btree
-  add_index "liesins", ["service_id"], name: "index_liesins_on_service_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.time    "startingTime"
@@ -118,8 +110,10 @@ ActiveRecord::Schema.define(version: 20131126135347) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
 
+  add_index "services", ["category_id"], name: "index_services_on_category_id", using: :btree
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

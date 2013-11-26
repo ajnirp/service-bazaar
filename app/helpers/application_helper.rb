@@ -1,5 +1,16 @@
 module ApplicationHelper
   include SessionsHelper
+  def all_categories
+    Category.all
+  end
+
+  def all_category_names
+    all_categories.map { |c| c.title }
+  end
+
+  def all_category_descriptions
+    all_categories.map { |c| c.description }
+  end
 end
 
 # Monkeypatching
@@ -16,4 +27,8 @@ class Float
   def round_point5
     (self*2).round / 2.0
   end
+end
+
+ActiveSupport::Inflector.inflections do |inflection|
+  inflection.irregular "has", "have"
 end

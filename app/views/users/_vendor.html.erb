@@ -1,0 +1,2 @@
+<p>You are offering <%= pluralize(current_user.services.count, "service") %>.</p>
+<p>View your offered services <%= link_to "here", "/users/#{current_user.id}/offered" %></p>

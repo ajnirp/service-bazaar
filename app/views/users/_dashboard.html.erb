@@ -10,7 +10,7 @@
 
 	#roles {
 		border-radius: 10px;
-		background-color: #ddd;
+		background-color: #eee;
 		width: 800px;
 		height: 400px;
 		overflow: auto;
@@ -27,6 +27,10 @@
     <div class="success"><%= flash[:service_created] %></div>
 <% end %>
 
+<% if flash[:success] %>
+    <div class="success"><%= flash[:service_created] %></div>
+<% end %>
+
 <h1>Dashboard</h1>
 
 <div style="float:left">
@@ -40,7 +44,28 @@
 	<div id="roles" class="tab-content">
 		<div class="tab-pane active" id="buyer">
 			<div class="container">
-				<p>You have signed up for </p>
+				<% @appointments = current_user.appointments %>
+				<% @confirmed = @appointments.select(&:isConfirmed) %>
+				<% num_confirmed = @confirmed.count %>
+
+				<p>You have signed up for <%= pluralize(num_confirmed, "appointment") %>.</p>
+
+				<p><%= pluralize(num_confirmed, "appointment") %> <%= "has".pluralize(num_confirmed) %> been confirmed.</p>
+				<table class="table table-bordered">
+					<tr>
+						<th>Listing description</th>
+						<th>Offered by</th>
+					</tr>
+					<% @confirmed.each do |a| %>
+					<tr>
+						<td><%= link_to a.listing.description, a.listing %></td>
+						<td><%= link_to a.listing.service.user.username, a.listing.service.user %></td>
+					</tr>
+				</table>
+
+				<% end %>
+
+				<p><%= pluralize(@appointments.count-num_confirmed, "appointment") %> <%= "has".pluralize(num_confirmed) %> not been confirmed.</p>
 			</div>
 		</div>
 

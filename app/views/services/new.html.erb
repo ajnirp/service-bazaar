@@ -6,10 +6,11 @@
 	<!-- <label for="service-title">Title</label> -->
 	<input type="text" class="form-control" id="service-title" name="service[title]" placeholder="Title" maxlength="100" required><br>
 
-	<label for="service-category">Category</label>
-	<select name="category" id="service-category">
-		<% Category.all.each do |cat_name| %>
-			<option value=<%= raw "\"#{cat_name.title}\""%> ><%= cat_name.title %></option>
+	<!-- <label for="service-category">Category</label> -->
+	Category
+	<select name="service[category_id]" id="service-category">
+		<% Category.all.each do |t| %>
+			<option value="<%= t.id %>"><%= t.title %></option>
 		<% end %>
 	</select><br><br>
 
@@ -21,5 +22,5 @@
 
 	<%= token_tag nil %>
 
-	<button type="submit" class="btn btn-lg btn-primary">Create!</button><br>
+	<button type="submit" class="btn btn-lg btn-success">Create!</button><br>
 </form>

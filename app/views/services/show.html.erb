@@ -9,9 +9,13 @@
 <h1><%= @service.title %></h1>
 
 <% owner = @service.user %>
+<% @category = Category.find_by(@service.category_id) %>
 
 <h2>Vendor</h2>
 <p>This service is offered by <%= link_to "#{owner.username}", owner %></p>
+
+<h2>Category</h2>
+<p>This service belongs to the category <%= link_to @category.title, @category %></p>
 
 <h2>Description</h2>
 <p><%= @service.description %></p>
@@ -26,19 +30,23 @@
 	<p>This service has the following listings:</p>
 	<ul>
 		<% @service.listings.each do |l| %>
-			<li>
-				<%= link_to l.description, l %>
-				<form action=<%= "/listings/#{l.id}" %> method="post">
-					<input type="hidden" name="serviceid" value="<%= @service.id %>">
-					<input type="hidden" name="listingid" value="<%= l.id %>">
-					<input name="_method" type="hidden" value="delete" />
-					<%= token_tag nil %>
-					<button type="submit" class="btn btn-xs btn-danger">Delete</button>
-				</form>
-				<%#= button_to "Delete", "/listings/#{l.id}",
-                                method: :delete, data: { confirm: "Are you sure?" } %>
-                <%= button_to "Delete Image", listing_path(l),
-                                method: :delete, data: { confirm: "Are you sure?" } %>
+			<li style="list-style-type:none ; margin-bottom:10px">
+				<div class="row">
+					<div class="col-md-1">
+						<%= link_to l.description, l %>
+					</div>
+					<% if current_user.id == owner.id %>
+						<div class="col-md-2">
+							<form action=<%= "/listings/#{l.id}" %> method="post">
+								<input type="hidden" name="serviceid" value="<%= @service.id %>">
+								<input type="hidden" name="listingid" value="<%= l.id %>">
+								<input name="_method" type="hidden" value="delete" />
+								<%= token_tag nil %>
+								<button type="submit" class="btn btn-xs btn-danger" data-confirm="Delete listing '<%= l.description %>'?">Delete</button>
+							</form>
+						</div>
+					<% end %>
+				</div>
 			</li>
 		<% end %>
 	</ul>
