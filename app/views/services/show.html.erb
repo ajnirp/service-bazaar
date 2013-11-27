@@ -32,7 +32,7 @@
 		<% @service.listings.each do |l| %>
 			<li style="list-style-type:none ; margin-bottom:10px">
 				<div class="row">
-					<div class="col-md-1">
+					<div class="col-md-3">
 						<%= link_to l.description, l %>
 					</div>
 					<% if current_user.id == owner.id %>
@@ -61,11 +61,17 @@
 <% end %>
 <br>
 <br>
-	<form action="/feedbacks/new" method="post">
-		<input type="hidden" name="service[id]" value="<%= @service.id %>">
-		<%= token_tag nil %>
-		<button type="submit" class="btn btn-success">Add/Edit Feedback</button>
-	</form>
+
+<% @service.listings.each do |l| %>
+  <% if !@found && !l.appointment.nil? && !l.appointment.user.nil? && l.appointment.user.id == current_user.id %>
+  	<form action="/feedbacks/new" method="post">
+  		<input type="hidden" name="service[id]" value="<%= @service.id %>">
+  		<%= token_tag nil %>
+  		<button type="submit" class="btn btn-success">Add/Edit Feedback</button>
+  	</form>
+    <% @found = true %>
+  <% end %>
+<% end %>
 <br><br>
 <h2> Reviews</h2>
 

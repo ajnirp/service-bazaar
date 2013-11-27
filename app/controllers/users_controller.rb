@@ -95,7 +95,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :emailID, :password, :latitude, :longitude, :dateOfBirth, :realName)
+    params.require(:user).permit(:username, :emailID, :password, :latitude, :longitude, :dateOfBirth, :realName,:rating)
   end
 
   def new_msg_params
