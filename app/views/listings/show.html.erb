@@ -46,20 +46,24 @@
 <% end %>
 
 <% if @listing.service.user.id != current_user.id # current user is not the listing's creator %>
-	<% if !@hasAppointment %>
+	<% if @appointment.listing.nil? %>
 		<p>You do not have an appointment for this listing. Would you like to create one?</p>
 		<form action="/appointments/new" method="post">
 			<input type="hidden" name="listingid" value="<%= @listing.id %>">
 			<%= token_tag nil %>
 			<button type="submit" class="btn btn-info">Create Appointment</button>
 		</form>
-	<% elsif @hasAppointment && @appointment.user.id == current_user.id %>
+	<% elsif !@appointment.listing.nil? && @appointment.user.id == current_user.id %>
 		<p>You have created an appointment for this listing. View it <%= link_to "here", @appointment %></p>
 	<% end %>
 <% else # current user is the listing's creator %>
-	<% if @hasAppointment %>
-		<p>An appointment for this listing has been created, but you have not confirmed it. View it <%= link_to "here", @appointment %></p>
-	<% else %>
+	<% if !@appointment.user.nil? %>
+		<% if !@appointment.isConfirmed %>
+			<p>An appointment for this listing has been created, but you have not confirmed it. View it <%= link_to "here", @appointment %></p>
+		<% else %>
+			<p>This listing has a confirmed appointment! View it <%= link_to "here", @appointment %>.</p>
+		<% end %>
+	<% else @appointment.user.nil? %>
 		<p>No appointment for this listing has been created yet.</p>
 	<% end %>
 <% end %>
