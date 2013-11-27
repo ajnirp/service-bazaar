@@ -7,7 +7,7 @@
 	@servMap=@userServices.map{|x| {"id"=>x[:id],"title" => x[:title],"desc"=>x[:description], "startDate" => x.listings.map{|y| y[:startDate]}.min, "endDate"=> x.listings.map{|y| y[:endDate]}.max, "minPrice"=> x.listings.map{|y| y[:minPrice]}.min, "maxPrice"=>x.listings.map{|y| y[:maxPrice]}.max }  }
 %>
 
-<h1>Services offered by <%= @user.username %></h1>
+<h1>Services offered by <%= if current_user.id == @user.id then "you" else @user.username end %></h1>
 
 <ul>
 <% @user.services.each do |s| %>

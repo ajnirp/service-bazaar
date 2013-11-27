@@ -51,7 +51,7 @@
 		<form action="/appointments/new" method="post">
 			<input type="hidden" name="listingid" value="<%= @listing.id %>">
 			<%= token_tag nil %>
-			<button type="submit" class="btn btn-lg btn-primary">Create Appointment</button>
+			<button type="submit" class="btn btn-info">Create Appointment</button>
 		</form>
 	<% elsif @hasAppointment && @appointment.user.id == current_user.id %>
 		<p>You have created an appointment for this listing. View it <%= link_to "here", @appointment %></p>

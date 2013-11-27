@@ -11,9 +11,9 @@
 <p><%= link_to "Home", "/" %></p>
 
 <form class="form-signin" action="/sessions" method="post">
-	<div style="float:left">
-		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30" required autofocus>
-		<input class="form-control" type="password" name="session[password]" placeholder="Password" required>
+	<div class="col-md-4">
+		<input class="form-control" type="text" name="session[username]" placeholder="Username" maxlength="30" required autofocus><br>
+		<input class="form-control" type="password" name="session[password]" placeholder="Password" required> <br>
 	</div>
 	<%= token_tag nil %>
 	<button type="submit" class="btn btn-primary" style="margin:10px">Log in</button>

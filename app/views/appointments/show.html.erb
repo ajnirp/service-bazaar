@@ -1,0 +1,49 @@
+<h1>Appointment</h1>
+
+This is an appointment for <%= link_to @listing.description, @listing %>.
+
+<h2>Details</h2>
+
+<table class="table table-bordered" style="table-layout:fixed;width:600px">
+	<tr>
+		<td>Vendor</td>
+		<td><%= link_to @appointment.listing.service.user.username, @appointment.listing.service.user %></td>
+	</tr>
+	<tr>
+		<td>Buyer</td>
+		<td><%= link_to @appointment.user.username, @appointment.user %></td>
+	</tr>
+	<tr>
+		<td>Price</td>
+		<td><%= @appointment.price %></td>
+	</tr>
+	<tr>
+		<td>Date</td>
+		<td><%= @appointment.date %></td>
+	</tr>
+	<tr>
+		<td>Confirmed?</td>
+		<td><%= @appointment.isConfirmed %></td>
+	</tr>
+</table>
+
+<% @vendor = @appointment.listing.service.user %>
+
+<% if @appointment.isConfirmed %>
+	<% if @vendor.id == current_user.id %>
+		<p>You have confirmed this appointment.</p>
+	<% else %>
+		<p>The vendor has confirmed this appointment!</p>
+	<% end %>
+<% else %>
+	<% if @vendor.id == current_user.id %>
+		<p>You have not yet confirmed this appointment. Would you like to do so?</p>
+		<form method="post" action="/confirm-appointment">
+			<input type="hidden" name="appoid" value="<%= @appointment.id %>">
+			<%= token_tag nil %>
+			<button type="submit" class="btn btn-warning">Confirm!</button>
+		</form>
+	<% else %>
+		<p>The vendor has not yet confirmed this appointment</p>
+	<% end %>
+<% end %>

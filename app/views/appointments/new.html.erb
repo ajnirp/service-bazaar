@@ -1,0 +1,15 @@
+<h1>Create Appointment</h1>
+
+<p>You are creating an appointment for the listing <%= link_to @listing.description, @listing %>. Please enter a price and a date for the appointment. You can always edit this appointment later.</p>
+
+<div class="col-md-4">
+	<form action="/appointments" method="post">
+		<input type="hidden" name="userid" value="<%= current_user.id %>">
+		<input type="hidden" name="listingid" value="<%= @listing.id %>">
+		<input type="hidden" name="appointment[isConfirmed]" value="false"><br>
+		<input class="form-control" type="number" min="0" step="any" name="appointment[price]" placeholder="Price"><br>
+		<input class="form-control" type="date" name="appointment[date]" placeholder="Date"><br>
+		<%= token_tag nil %>
+		<button type="submit" class="btn btn-warning">Create!</button>
+	</form>
+</div>
