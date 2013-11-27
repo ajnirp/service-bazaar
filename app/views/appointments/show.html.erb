@@ -1,6 +1,14 @@
 <h1>Appointment</h1>
 
-This is an appointment for <%= link_to @listing.description, @listing %>.
+<p>This is an appointment for <%= link_to @listing.description, @listing %>.</p>
+<% if (current_user.id == @appointment.user.id) || (@appointment.listing.service.user.id == current_user.id) %>
+	<form action=<%= "/appointments/#{@appointment.id}" %> method="post">
+		<input type="hidden" name="appoid" value="<%= @appointment.id %>">
+		<input name="_method" type="hidden" value="delete" />
+		<%= token_tag nil %>
+		<button type="submit" class="btn btn-xs btn-danger" data-confirm="Delete this appointment '<%= @appointment.listing.description %>'?">Delete</button>
+	</form>
+<% end %>
 
 <h2>Details</h2>
 
