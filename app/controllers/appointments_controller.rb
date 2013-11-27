@@ -57,7 +57,9 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    
+    @appointment = Appointment.find(params[:appoid])
+    @appointment.destroy
+    redirect_to '/'
   end
 
   private
