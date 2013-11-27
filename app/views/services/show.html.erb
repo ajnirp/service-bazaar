@@ -36,7 +36,7 @@
 						<%= link_to l.description, l %>
 					</div>
 					<% if current_user.id == owner.id %>
-						<div class="col-md-2">
+						<div class="col-md-6">
 							<form action=<%= "/listings/#{l.id}" %> method="post">
 								<input type="hidden" name="serviceid" value="<%= @service.id %>">
 								<input type="hidden" name="listingid" value="<%= l.id %>">

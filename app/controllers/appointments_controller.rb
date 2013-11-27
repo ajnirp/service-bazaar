@@ -11,13 +11,23 @@ class AppointmentsController < ApplicationController
     @user = User.find(params[:userid])
     @listing = Listing.find(params[:listingid])
 
-    if @appointment.save
-      @appointment.listing = @listing
-      @appointment.user = @user
+    # check if the appointment satisfies the required parameters
+    price_valid = @appointment.price <= @listing.maxPrice && @appointment.price >= @listing.minPrice
+    time_valid = @appointment.timeslot <= @listing.endingTime && @appointment.price >= @listing.startingTime
+    date_valid = @appointment.date <= @listing.endDate && @appointment.price >= @listing.startDate
 
-      @listing.appointments.push @appointment
-      @user.appointments.push @appointment
-      redirect_to '/'
+    if price_valid && time_valid && date_valid
+      if @appointment.save
+        @appointment.listing = @listing
+        @appointment.user = @user
+
+        @listing.appointments.push @appointment
+        @user.appointments.push @appointment
+        redirect_to '/'
+      end
+    else
+      flash[:error] = "Could not create appointment: invalid price, date or time"
+      redirect_to @listing
     end
   end
 
@@ -52,7 +62,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create_appo_params
-    params.require(:appointment).permit(:price, :date, :userid, :isConfirmed, :listingid)
+    params.require(:appointment).permit(:price, :date, :userid, :isConfirmed, :listingid, :timeslot)
   end
 
   def confirm_appo_params
