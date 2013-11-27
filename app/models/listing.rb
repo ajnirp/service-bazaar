@@ -1,6 +1,6 @@
 class Listing < ActiveRecord::Base
   belongs_to :service
-  has_many :appointments
+  has_one :appointment
 
   validates :description, :length => { :maximum => 100 } 
   validates :description, :presence => true

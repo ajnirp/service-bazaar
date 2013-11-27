@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126175321) do
+ActiveRecord::Schema.define(version: 20131127081555) do
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20131126175321) do
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "timeslot"
   end
 
   add_index "appointments", ["listing_id"], name: "index_appointments_on_listing_id", using: :btree

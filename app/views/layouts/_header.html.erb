@@ -15,6 +15,7 @@
     <ul class="nav navbar-nav">
       <li><a href="/">Home</span></a></li>
       <li><%= link_to "Profile", "/users/#{current_user.id}" %></a></li>
+      <li><%= link_to "Offered", "/users/#{current_user.id}/offered" %></a></li>
       <li><a href="/messages">Messages</a>
       <li><a href="/search">Search</a>
       </li>
@@ -41,7 +42,8 @@
       <div class="modal-body">
         <p>Welcome to the Service Bazaar! Now that you're logged in, you can start off by browsing around for services that you want by running a <%= link_to "search", "/search" %>. Find a service you like? Check out the listings and create an appointment for one of them. Once you sign up for an appointment, the vendor has to approve the appointment. Once that's done, you have an appointment!</p>
         <p>Alternatively, you can offer appointments yourself, by clicking the Create Service button.</p>
-        <p>Oh, and you can <%= link_to "messages", "/message" %> other people too!</p>
+        <p>You can <%= link_to "message", "/messages" %> other people too!</p>
+        <p>The Dashboard shows your currently pending appointments and listings. Click on the Buyer tab to bring up a list of the appointments that you have signed up for. The Vendor tab lists the appointments for listings that belong to services you offered.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
