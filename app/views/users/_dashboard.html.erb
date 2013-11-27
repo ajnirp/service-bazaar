@@ -66,7 +66,7 @@
 				</table>
 
 
-				<p><%= pluralize(@appointments.count-num_confirmed, "appointment") %> <%= "has".pluralize(num_confirmed) %> not been confirmed.</p>
+				<p><%= pluralize(@appointments.count-num_confirmed, "appointment") %> <%= "has".pluralize(@appointments.count-num_confirmed) %> not been confirmed.</p>
 				<table class="table table-bordered">
 					<tr>
 						<th>Listing description</th>

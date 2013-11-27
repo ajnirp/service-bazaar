@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20131127081555) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "feedbackfors", id: false, force: true do |t|
+    t.integer "feedbackID",            default: 0,  null: false
+    t.string  "buyerName",  limit: 30, default: "", null: false
+    t.integer "serviceID"
+  end
+
   create_table "feedbacks", force: true do |t|
     t.float   "rating"
     t.text    "review"
@@ -46,14 +52,6 @@ ActiveRecord::Schema.define(version: 20131127081555) do
   end
 
   add_index "feedbacks", ["user_id", "service_id"], name: "index_feedbacks_on_user_id_and_service_id", unique: true, using: :btree
-
-  create_table "liesins", force: true do |t|
-    t.integer "category_id"
-    t.integer "service_id"
-  end
-
-  add_index "liesins", ["category_id"], name: "index_liesins_on_category_id", using: :btree
-  add_index "liesins", ["service_id"], name: "index_liesins_on_service_id", using: :btree
 
   create_table "listings", force: true do |t|
     t.time    "startingTime"
@@ -91,6 +89,11 @@ ActiveRecord::Schema.define(version: 20131127081555) do
   end
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
+
+  create_table "offers", id: false, force: true do |t|
+    t.string  "vendorName", limit: 30, default: "", null: false
+    t.integer "serviceID",             default: 0,  null: false
+  end
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"

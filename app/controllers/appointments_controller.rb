@@ -12,23 +12,24 @@ class AppointmentsController < ApplicationController
     @listing = Listing.find(params[:listingid])
 
     # check if the appointment satisfies the required parameters
-    price_valid = @appointment.price <= @listing.maxPrice && @appointment.price >= @listing.minPrice
-    time_valid = @appointment.timeslot <= @listing.endingTime && @appointment.price >= @listing.startingTime
-    date_valid = @appointment.date <= @listing.endDate && @appointment.price >= @listing.startDate
+    # price_valid = @appointment.price <= @listing.maxPrice && @appointment.price >= @listing.minPrice
+    # time_valid = @appointment.timeslot <= @listing.endingTime && @appointment.price >= @listing.startingTime
+    # date_valid = @appointment.date <= @listing.endDate && @appointment.price >= @listing.startDate
 
-    if price_valid && time_valid && date_valid
+    # if price_valid && time_valid && date_valid
       if @appointment.save
         @appointment.listing = @listing
         @appointment.user = @user
 
-        @listing.appointments.push @appointment
-        @user.appointments.push @appointment
+        @listing.appointment = @appointment
+        puts @appointment, "segkhlierhagkaiw 333333333333", @listing.id
+        @user.appointments.push  @appointment
         redirect_to '/'
       end
-    else
-      flash[:error] = "Could not create appointment: invalid price, date or time"
-      redirect_to @listing
-    end
+    # else
+    #   flash[:error] = "Could not create appointment: invalid price, date or time"
+    #   redirect_to @listing
+    # end
   end
 
   def show
@@ -53,6 +54,10 @@ class AppointmentsController < ApplicationController
     else
       redirect_to '/contact'
     end
+  end
+
+  def destroy
+    
   end
 
   private

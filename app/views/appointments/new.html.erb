@@ -7,10 +7,15 @@
 		<input type="hidden" name="userid" value="<%= current_user.id %>">
 		<input type="hidden" name="listingid" value="<%= @listing.id %>">
 		<input type="hidden" name="appointment[isConfirmed]" value="false"><br>
-		<input class="form-control" type="number" min="0" step="any" name="appointment[price]" placeholder="Price"><br>
-		<input class="form-control" type="time" name="appointment[timeslot]" placeholder="Time Slot"><br>
-		<input class="form-control" type="date" name="appointment[date]" placeholder="Date"><br>
+
+		<input class="form-control" type="number" min="<%= @listing.minPrice %>" max="<%= @listing.maxPrice %>" step="any" name="appointment[price]" placeholder="Price"><br>
+
+		<input class="form-control" type="time" min="<%= @listing.startingTime %>" max="<%= @listing.endingTime %>" name="appointment[timeslot]" placeholder="Time Slot"><br>
+
+		<input class="form-control" type="date" min="<%= @listing.startDate %>" max="<%= @listing.endDate %>" name="appointment[date]" placeholder="Date"><br>
+
 		<%= token_tag nil %>
+		
 		<button type="submit" class="btn btn-warning">Create!</button>
 	</form>
 </div>
