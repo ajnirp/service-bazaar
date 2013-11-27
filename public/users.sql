@@ -64,7 +64,6 @@ insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,e
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(163,"rishiraj","rishiraj",21,76,"rishiraj","1993-03-02","rishiraj@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(164,"rohandas","rohandas",21.1,76.1,"rohandas","1993-03-03","rohandas@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(165,"rohangyani","rohangyani",21.2,76.2,"rohangyani","1993-03-04","rohangyani@cse.iitb.ac.in",0);
-insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(166,"rohanp","rohanp",21.3,76.3,"rohanp","1993-03-05","rohanp@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(167,"sachinchandra","sachinchandra",21.4,76.4,"sachinchandra","1993-03-06","sachinchandra@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(168,"sagarjha","sagarjha",21.5,76.5,"sagarjha","1993-03-07","sagarjha@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(169,"sahil","sahil",21.6,76.6,"sahil","1993-03-08","sahil@cse.iitb.ac.in",0);
@@ -83,7 +82,6 @@ insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,e
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(182,"sushanthiray","sushanthiray",22.9,77.9,"sushanthiray","1993-03-21","sushanthiray@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(183,"svpraneethnaidu","svpraneethnaidu",23,78,"svpraneethnaidu","1993-03-22","svpraneethnaidu@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(184,"tanmayr","tanmayr",23.1,78.1,"tanmayr","1993-03-23","tanmayr@cse.iitb.ac.in",0);
-insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(185,"tarunkathuria","tarunkathuria",23.2,78.2,"tarunkathuria","1993-03-24","tarunkathuria@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(186,"tarunraj","tarunraj",23.3,78.3,"tarunraj","1993-03-25","tarunraj@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(187,"tejasriram","tejasriram",23.4,78.4,"tejasriram","1993-03-26","tejasriram@cse.iitb.ac.in",0);
 insert into users(id,username,password,latitude,longitude,realName,dateOfBirth,emailID,rating) values(188,"tpk","tpk",23.5,78.5,"tpk","1993-03-27","tpk@cse.iitb.ac.in",0);
