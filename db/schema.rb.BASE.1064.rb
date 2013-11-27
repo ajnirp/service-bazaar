@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131127081555) do
-=======
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131126180237) do
-=======
-ActiveRecord::Schema.define(version: 20131126175321) do
->>>>>>> a1990931065c78ec57a459cbfe1e0e5dff626c37
->>>>>>> 90be277bd047ef70a0aa7ab8f0a27eefd9af6c41
+ActiveRecord::Schema.define(version: 20131126135347) do
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -29,7 +21,6 @@ ActiveRecord::Schema.define(version: 20131126175321) do
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.time     "timeslot"
   end
 
   add_index "appointments", ["listing_id"], name: "index_appointments_on_listing_id", using: :btree
@@ -46,15 +37,16 @@ ActiveRecord::Schema.define(version: 20131126175321) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "feedbacks", force: true do |t|
-    t.float   "rating"
-    t.text    "review"
-    t.integer "user_id"
-    t.integer "service_id"
+  create_table "feedbackfors", id: false, force: true do |t|
+    t.integer "feedbackID",            default: 0,  null: false
+    t.string  "buyerName",  limit: 30, default: "", null: false
+    t.integer "serviceID"
   end
 
-<<<<<<< HEAD
-  add_index "feedbacks", ["user_id", "service_id"], name: "index_feedbacks_on_user_id_and_service_id", unique: true, using: :btree
+  create_table "feedbacks", force: true do |t|
+    t.float "rating"
+    t.text  "review"
+  end
 
   create_table "liesins", force: true do |t|
     t.integer "category_id"
@@ -64,8 +56,6 @@ ActiveRecord::Schema.define(version: 20131126175321) do
   add_index "liesins", ["category_id"], name: "index_liesins_on_category_id", using: :btree
   add_index "liesins", ["service_id"], name: "index_liesins_on_service_id", using: :btree
 
-=======
->>>>>>> a1990931065c78ec57a459cbfe1e0e5dff626c37
   create_table "listings", force: true do |t|
     t.time    "startingTime"
     t.time    "endingTime"
@@ -103,6 +93,11 @@ ActiveRecord::Schema.define(version: 20131126175321) do
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
 
+  create_table "offers", id: false, force: true do |t|
+    t.string  "vendorName", limit: 30, default: "", null: false
+    t.integer "serviceID",             default: 0,  null: false
+  end
+
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"
     t.string   "receiver_type"
@@ -123,10 +118,8 @@ ActiveRecord::Schema.define(version: 20131126175321) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
   end
 
-  add_index "services", ["category_id"], name: "index_services_on_category_id", using: :btree
   add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

@@ -5,4 +5,7 @@ class Service < ActiveRecord::Base
 
   has_one :liesin
   has_one :category, through: :liesin
+
+
+  has_many :feedbacks
 end

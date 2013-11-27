@@ -12,14 +12,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131127081555) do
-=======
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131126180237) do
 =======
 ActiveRecord::Schema.define(version: 20131126175321) do
 >>>>>>> a1990931065c78ec57a459cbfe1e0e5dff626c37
->>>>>>> 90be277bd047ef70a0aa7ab8f0a27eefd9af6c41
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -29,7 +25,6 @@ ActiveRecord::Schema.define(version: 20131126175321) do
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.time     "timeslot"
   end
 
   add_index "appointments", ["listing_id"], name: "index_appointments_on_listing_id", using: :btree

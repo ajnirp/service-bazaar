@@ -29,9 +29,12 @@ Ser::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :services
   resources :listings
+<<<<<<< HEAD
   resources :feedbacks
+=======
   resources :categories
   resources :appointments
+>>>>>>> a1990931065c78ec57a459cbfe1e0e5dff626c37
 
   # search and messages
   match "/search", to: "pages#search", via: [:get]
@@ -39,7 +42,10 @@ Ser::Application.routes.draw do
 
   # miscellaneous matches
   match "/users/:id/offered", to: "users#offered", via: [:get]
+<<<<<<< HEAD
 
   match "/feedbacks/new", to: "feedbacks#new", via: [:get,:post]
+=======
   match "/confirm-appointment", to:"appointments#confirm", via: [:post]
+>>>>>>> a1990931065c78ec57a459cbfe1e0e5dff626c37
 end
