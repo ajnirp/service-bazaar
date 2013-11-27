@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126135347) do
+ActiveRecord::Schema.define(version: 20131126180237) do
 
   create_table "appointments", force: true do |t|
     t.float    "price"
@@ -37,16 +37,14 @@ ActiveRecord::Schema.define(version: 20131126135347) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "feedbackfors", id: false, force: true do |t|
-    t.integer "feedbackID",            default: 0,  null: false
-    t.string  "buyerName",  limit: 30, default: "", null: false
-    t.integer "serviceID"
+  create_table "feedbacks", force: true do |t|
+    t.float   "rating"
+    t.text    "review"
+    t.integer "user_id"
+    t.integer "service_id"
   end
 
-  create_table "feedbacks", force: true do |t|
-    t.float "rating"
-    t.text  "review"
-  end
+  add_index "feedbacks", ["user_id", "service_id"], name: "index_feedbacks_on_user_id_and_service_id", unique: true, using: :btree
 
   create_table "liesins", force: true do |t|
     t.integer "category_id"
@@ -92,11 +90,6 @@ ActiveRecord::Schema.define(version: 20131126135347) do
   end
 
   add_index "notifications", ["conversation_id"], name: "index_notifications_on_conversation_id", using: :btree
-
-  create_table "offers", id: false, force: true do |t|
-    t.string  "vendorName", limit: 30, default: "", null: false
-    t.integer "serviceID",             default: 0,  null: false
-  end
 
   create_table "receipts", force: true do |t|
     t.integer  "receiver_id"

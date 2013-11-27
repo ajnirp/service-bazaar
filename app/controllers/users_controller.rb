@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(request.original_url.split('/').last)
+    @services=@user.services
+    @fbs=[]
+   @services.each{|s| s.feedbacks.each{|f| @fbs << {"service_info"=>f.service_id.to_s+"$"+Service.find(f.service_id).title,"rating"=>f.rating,"review"=>f.review,"buyer_info"=>f.user_id.to_s+" "+User.find(f.user_id).username}}}
   end
 
   def new_message

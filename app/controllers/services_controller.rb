@@ -15,6 +15,9 @@ class ServicesController < ApplicationController
   def show
     serv_id = request.original_url.split("/").last
     @service = Service.find(serv_id)
+    @reviews = @service.feedbacks
+    @fbl=@reviews.map{|f| {"buyer_info"=>f.user_id.to_s+" "+User.find(f.user_id).username,"rating"=>f.rating,"review"=>f.review}}
+    @feedbackjson=@fbl.to_json
   end
 
   private

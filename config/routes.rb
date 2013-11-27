@@ -26,6 +26,7 @@ Ser::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :services
   resources :listings
+  resources :feedbacks
 
   # search and messages
   match "/search", to: "pages#search", via: [:get]
@@ -33,4 +34,6 @@ Ser::Application.routes.draw do
 
   # offered services
   match "/users/:id/offered", to: "users#offered", via: [:get]
+
+  match "/feedbacks/new", to: "feedbacks#new", via: [:get,:post]
 end

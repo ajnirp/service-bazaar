@@ -1,0 +1,20 @@
+<h1 padding="20px">Submit Feedback</h1>
+<%= @r %><br>
+<div class="row">
+        <form class="form-signin" method="POST" action="/feedbacks">
+          <br><br>
+
+          <p><input class="form-control" id="session_username" type="text" name="feedback[serviceName]" placeholder="ServiceName" size="50" style="width:50%;margin-left: 18px;" value=<%=raw '"'+@service.title+'"'%> disabled></p><br>
+          <input class="form-control" id="session_password" type="text" name="feedback[vendorName]" placeholder="VendorName" style="width:50%;margin-left: 18px;" value=<%= @service.user.username %> disabled><br>
+          <input class="form-control" id="session_password" type="number" step="any"  name="feedback[rating]" placeholder="Rating" style="width:50%;margin-left: 18px;" value=<%= @fbrating.to_s%> max="5.0" min="0.0"><br>
+          <textarea padding="20px" style="width:50%;margin-left: 18px;" rows="10"  name="feedback[review]" placeholder="Review" class="form-control" ><%=raw @fbreview.to_s%></textarea >
+          <input type="hidden" name="feedback[user_id]" value=<%= current_user.id %> >
+          <input type="hidden" name="feedback[service_id]" value=<%= @serviceID %> >
+
+          <br>
+          <%= token_tag nil %>
+          <button class="btn btn-lg btn-primary btn-block" style="width:50%;margin-left: 18px;" type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+  
